@@ -1,34 +1,25 @@
 <%= form_with(model: movie, local: true) do |form| %>
-  <% if movie.errors.any? %>
-    <div class="alert alert-danger">
-      <h4><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h4>
-      <ul>
-        <% movie.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="mb-3">
+  <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title, class: "form-control" %>
+    <%= form.text_field :title %>
   </div>
 
-  <div class="mb-3">
+  <div class="field">
     <%= form.label :director %>
-    <%= form.text_field :director, class: "form-control" %>
+    <%= form.text_field :director %>
   </div>
 
-  <div class="mb-3">
+  <div class="field">
     <%= form.label :release_year %>
-    <%= form.number_field :release_year, class: "form-control" %>
+    <%= form.number_field :release_year %>
   </div>
 
-  <div class="mb-3">
+  <div class="field">
     <%= form.label :rating %>
-    <%= form.select :rating, options_for_select(["G","PG","PG-13","R","NC-17","Unknown"], movie.rating), {}, class: "form-select" %>
+    <%= form.text_field :rating %>
   </div>
 
-  <%= form.submit class: "btn btn-primary" %>
+  <div class="actions">
+    <%= form.submit "Create Movie" %>
+  </div>
 <% end %>
