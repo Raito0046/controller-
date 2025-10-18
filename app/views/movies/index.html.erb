@@ -1,18 +1,21 @@
-<h1 class="mb-4">Movies</h1>
-
-<!-- Bootstrap Carousel (component #1) -->
+<!-- Bootstrap Carousel (絵文字入り) -->
 <div id="movieCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
   <div class="carousel-inner">
     <% Movie.order(release_year: :desc).limit(3).each_with_index do |m, i| %>
       <div class="carousel-item <%= 'active' if i == 0 %>">
-        <img src="https://via.placeholder.com/1200x300?text=<%= URI.encode_www_form_component(m.title) %>" class="d-block w-100" alt="<%= m.title %>">
+        <!-- プレースホルダー画像に絵文字付きタイトル -->
+        <img src="https://via.placeholder.com/1200x300?text=<%= URI.encode_www_form_component(m.title + ' 🎬✨') %>" 
+             class="d-block w-100" 
+             alt="<%= m.title %>">
         <div class="carousel-caption d-none d-md-block">
-          <h5><%= m.title %></h5>
-          <p><%= m.director %> — <%= m.release_year %></p>
+          <h5><%= m.title %> 🎬</h5>
+          <p>🎥 <%= m.director %> — <%= m.release_year %></p>
         </div>
       </div>
     <% end %>
   </div>
+
+  <!-- 前/次ボタン -->
   <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
@@ -22,14 +25,3 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-
-<!-- Movies list using partial (Cards) -->
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  <% @movies.each do |movie| %>
-    <div class="col">
-      <%= render partial: "movie", locals: { movie: movie } %>
-    </div>
-  <% end %>
-</div>
-
-<%= link_to "Add New Movie", new_movie_path, class: "btn btn-accent btn-lg mt-3", style: "background: var(--brand-accent); color: white;" %>
