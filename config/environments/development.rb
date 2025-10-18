@@ -5,6 +5,7 @@ Rails.application.configure do
 
   # Make code changes take effect immediately without server restart.
   config.enable_reloading = true
+  config.hosts << "ubiquitous-funicular-9pxqxrw59v93xq9r-3000.app.github.dev"
 
   # Do not eager load code on boot.
   config.eager_load = false
