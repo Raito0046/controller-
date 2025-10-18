@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: %i[show edit update destroy]
+   skip_before_action :verify_authenticity_token, only: [:create] if Rails.env.development?
 
   # GET /movies
   # HTTP Verb: GET
