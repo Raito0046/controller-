@@ -1,0 +1,10 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title"><%= movie.title %> <small class="text-muted">(<%= movie.release_year %>)</small></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Directed by <%= movie.director %></h6>
+    <p class="card-text"><strong>Rating:</strong> <span class="badge bg-secondary"><%= movie.rating %></span></p>
+    <%= link_to "Show", movie_path(movie), class: "btn btn-primary btn-sm" %>
+    <%= link_to "Edit", edit_movie_path(movie), class: "btn btn-outline-secondary btn-sm" %>
+    <%= link_to "Delete", movie_path(movie), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+  </div>
+</div>
