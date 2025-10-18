@@ -1,6 +1,15 @@
 {
+<<<<<<< HEAD
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+=======
+  "name": "movie_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "RAITO OSHIRO <133190036+Raito0046@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+>>>>>>> c4e9651 (aa)
     "bootstrap": "^5.3.8"
   }
 }
