@@ -5,8 +5,7 @@
   <div class="carousel-inner">
     <% Movie.order(release_year: :desc).limit(3).each_with_index do |m, i| %>
       <div class="carousel-item <%= 'active' if i == 0 %>">
-        <!-- ここではプレースホルダー画像を使います -->
-        <img src="https://via.placeholder.com/1200x300?text=<%= ERB::Util.url_encode(m.title) %>" class="d-block w-100" alt="<%= m.title %>">
+        <img src="https://via.placeholder.com/1200x300?text=<%= URI.encode_www_form_component(m.title) %>" class="d-block w-100" alt="<%= m.title %>">
         <div class="carousel-caption d-none d-md-block">
           <h5><%= m.title %></h5>
           <p><%= m.director %> — <%= m.release_year %></p>
@@ -25,9 +24,11 @@
 </div>
 
 <!-- Movies list using partial (Cards) -->
-<div>
+<div class="row row-cols-1 row-cols-md-3 g-4">
   <% @movies.each do |movie| %>
-    <%= render partial: "movie", locals: { movie: movie } %>
+    <div class="col">
+      <%= render partial: "movie", locals: { movie: movie } %>
+    </div>
   <% end %>
 </div>
 
