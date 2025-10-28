@@ -2,6 +2,14 @@ class ReviewsController < ApplicationController
   before_action :set_movie
   before_action :set_review, only: %i[show edit update destroy]
 
+  # DELETE /movies/:movie_id/reviews/:id
+  # HTTP Verb: DELETE
+  # URL: /movies/:movie_id/reviews/:id
+  def destroy
+    @review.destroy
+    redirect_to movie_reviews_path(@movie), notice: "Review was successfully deleted."
+  end
+
   # GET /movies/:movie_id/reviews
   # HTTP Verb: GET
   # URL: /movies/:movie_id/reviews
