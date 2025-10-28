@@ -35,6 +35,24 @@ class ReviewsController < ApplicationController
   def show
   end
 
+  # GET /movies/:movie_id/reviews/:id/edit
+  # HTTP Verb: GET
+  # URL: /movies/:movie_id/reviews/:id/edit
+  def edit
+  end
+
+  # PATCH/PUT /movies/:movie_id/reviews/:id
+  # HTTP Verb: PATCH or PUT
+  # URL: /movies/:movie_id/reviews/:id
+  def update
+    if @review.update(review_params)
+      redirect_to movie_review_path(@movie, @review), notice: "Review was successfully updated."
+    else
+      flash.now[:alert] = "Please correct the errors below."
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_movie
