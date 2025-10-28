@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_movie
+  before_action :set_review, only: %i[show edit update destroy]
 
   # GET /movies/:movie_id/reviews
   # HTTP Verb: GET
@@ -28,6 +29,12 @@ class ReviewsController < ApplicationController
     end
   end
 
+  # GET /movies/:movie_id/reviews/:id
+  # HTTP Verb: GET
+  # URL: /movies/:movie_id/reviews/:id
+  def show
+  end
+
   private
 
   def set_movie
@@ -36,5 +43,9 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:reviewer, :rating, :body)
+  end
+
+  def set_review
+    @review = @movie.reviews.find(params[:id])
   end
 end
