@@ -4,4 +4,6 @@ class Movie < ApplicationRecord
   validates :release_year, presence: true,
                            numericality: { only_integer: true, greater_than: 1870, less_than_or_equal_to: Date.current.year }
   validates :rating, presence: true, inclusion: { in: %w[G PG PG-13 R NC-17 Unknown], message: "%{value} is not a valid rating" }
+
+  has_many :reviews, dependent: :destroy
 end
