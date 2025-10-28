@@ -2,14 +2,6 @@ class ReviewsController < ApplicationController
   before_action :set_movie
   before_action :set_review, only: %i[show edit update destroy]
 
-  # DELETE /movies/:movie_id/reviews/:id
-  # HTTP Verb: DELETE
-  # URL: /movies/:movie_id/reviews/:id
-  def destroy
-    @review.destroy
-    redirect_to movie_reviews_path(@movie), notice: "Review was successfully deleted."
-  end
-
   # GET /movies/:movie_id/reviews
   # HTTP Verb: GET
   # URL: /movies/:movie_id/reviews
@@ -61,17 +53,25 @@ class ReviewsController < ApplicationController
     end
   end
 
+  # DELETE /movies/:movie_id/reviews/:id
+  # HTTP Verb: DELETE
+  # URL: /movies/:movie_id/reviews/:id
+  def destroy
+    @review.destroy
+    redirect_to movie_reviews_path(@movie), notice: "Review was successfully deleted."
+  end
+
   private
 
   def set_movie
     @movie = Movie.find(params[:movie_id])
   end
 
-  def review_params
-    params.require(:review).permit(:reviewer, :rating, :body)
-  end
-
   def set_review
     @review = @movie.reviews.find(params[:id])
+  end
+
+  def review_params
+    params.require(:review).permit(:reviewer, :rating, :body)
   end
 end
