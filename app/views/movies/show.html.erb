@@ -1,6 +1,13 @@
-<h1><%= @movie.title %> (<%= @movie.release_year %>)</h1>
+<h1><%= @movie.title %></h1>
 
+<p><strong>Release year:</strong> <%= @movie.release_year %></p>
 <p><strong>Director:</strong> <%= @movie.director %></p>
-<p><strong>Rating:</strong> <%= @movie.rating %></p>
 
-<%= link_to "Back to Movies", movies_path, class: "btn btn-outline-primary" %>
+<p><strong>Description:</strong></p>
+<p><%= simple_format(@movie.description) %></p>
+
+<p>
+  <%= link_to "Edit", edit_movie_path(@movie) %> |
+  <%= link_to "Reviews", movie_reviews_path(@movie) %> |
+  <%= link_to "Back to list", movies_path %>
+</p>
