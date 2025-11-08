@@ -1,0 +1,27 @@
+<h1>Edit Profile</h1>
+
+<%= form_with model: @user, local: true do |form| %>
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :password %> (leave blank if not changing)
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+  <div>
+    <%= form.label :password_challenge, "Current password (required to update your info)" %>
+    <%= form.password_field :password_challenge, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Update" %>
+  </div>
+<% end %>

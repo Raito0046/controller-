@@ -27,14 +27,14 @@ class MoviesController < ApplicationController
   # HTTP Verb: POST
   # URL: /movies
   def create
-    @movie = Movie.new(movie_params)
-    if @movie.save
-      redirect_to @movie, notice: "Movie was successfully created."
-    else
-      flash.now[:alert] = "There were errors creating the movie."
-      render :new, status: :unprocessable_entity
-    end
+  @movie = Current.user.movies.build(movie_params)
+  if @movie.save
+    redirect_to @movie, notice: "Movie was successfully created."
+  else
+    flash.now[:alert] = "There were errors creating the movie."
+    render :new, status: :unprocessable_entity
   end
+end
 
   # GET /movies/:id/edit
   # HTTP Verb: GET
