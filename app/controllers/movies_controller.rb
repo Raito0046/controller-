@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: %i[show edit update destroy]
+  before_action :authorize_movie, only: [:edit, :update, :destroy]
    skip_before_action :verify_authenticity_token, only: [:create] if Rails.env.development?
 
   # GET /movies
@@ -68,6 +69,10 @@ end
   def set_movie
     @movie = Movie.find(params[:id])
   end
+
+  def authorize_movie
+  redirect_to movies_path, alert: "Not authorized" unless @movie.user == Current.user
+　end
 
   def movie_params
     params.require(:movie).permit(:title, :director, :release_year, :rating)

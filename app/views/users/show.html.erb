@@ -5,11 +5,14 @@
   <%= @user.email %>
 </p>
 
-<%# Show associated model data here, e.g., %>
-<%# <h2>Your Tasks</h2> %>
-<%# @user.tasks.each do |task| %>
-<%#   <div><%= task.title %></div> %>
-<%# end %>
+<h2>Your Movies</h2>
+<ul>
+  <% @user.movies.each do |movie| %>
+    <li>
+      <%= link_to movie.title, movie_path(movie) %>
+    </li>
+  <% end %>
+</ul>
 
 <%= link_to "Edit Profile", edit_user_path(@user) %> |
 <%= link_to "Delete Account", user_path(@user), method: :delete, data: { confirm: "Are you sure?" } %>
