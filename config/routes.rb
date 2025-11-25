@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
   resources :movies
+  resources :posters
   root "movies#index"
 end
 

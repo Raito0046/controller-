@@ -1,0 +1,12 @@
+<h1><%= @poster.title %></h1>
+
+<% if @poster.image.attached? %>
+  <div class="mb-3">
+    <%= image_tag url_for(@poster.image), class: "img-fluid" %>
+  </div>
+<% end %>
+
+<p><%= simple_format(@poster.description) %></p>
+
+<%= link_to "Edit", edit_poster_path(@poster), class: "btn btn-secondary" %>
+<%= link_to "Back", posters_path, class: "btn btn-link" %>
