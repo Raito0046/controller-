@@ -1,0 +1,13 @@
+<h1><%= @review.title %></h1>
+
+<p>
+  <strong>Rating:</strong> <%= @review.rating %>
+</p>
+
+<p>
+  <strong>Body:</strong><br>
+  <%= simple_format(@review.body) %>
+</p>
+
+<%= link_to "Edit", edit_movie_review_path(@movie, @review) %> |
+<%= link_to "Back to Reviews", movie_reviews_path(@movie) %>

@@ -60,9 +60,10 @@ class MoviesController < ApplicationController
   # HTTP Verb: DELETE
   # URL: /movies/:id
   def destroy
-    @movie.destroy
-    redirect_to movies_path, notice: "Movie was successfully deleted."
-  end
+  @movie = Movie.find(params[:id])
+  @movie.destroy
+  redirect_to movies_path, notice: "Movie was successfully deleted."
+end
 
   private
 

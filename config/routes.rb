@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   resource :session
   resources :passwords, param: :token
-  resources :movies
+  resources :movies do
+    resources :reviews, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  end
   resources :posters
 
   root "movies#index"

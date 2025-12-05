@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_05_190447) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_05_203300) do
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.string "director"
@@ -19,6 +19,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_05_190447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.text "description"
     t.index ["user_id"], name: "index_movies_on_user_id"
   end
 
@@ -29,6 +30,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_05_190447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posters_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "movie_id", null: false
+    t.string "title"
+    t.text "body"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_reviews_on_movie_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -52,5 +63,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_05_190447) do
 
   add_foreign_key "movies", "users"
   add_foreign_key "posters", "users"
+  add_foreign_key "reviews", "movies"
   add_foreign_key "sessions", "users"
 end
