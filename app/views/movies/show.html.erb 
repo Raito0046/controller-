@@ -1,6 +1,0 @@
-<h1><%= @movie.title %> (<%= @movie.release_year %>)</h1>
-
-<p><strong>Director:</strong> <%= @movie.director %></p>
-<p><strong>Rating:</strong> <%= @movie.rating %></p>
-
-<%= link_to "Back to Movies", movies_path, class: "btn btn-outline-primary" %>

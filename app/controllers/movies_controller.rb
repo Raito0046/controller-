@@ -29,13 +29,13 @@ class MoviesController < ApplicationController
   # URL: /movies
   def create
   @movie = Current.user.movies.build(movie_params)
-  if @movie.save
-    redirect_to @movie, notice: "Movie was successfully created."
-  else
-    flash.now[:alert] = "There were errors creating the movie."
-    render :new, status: :unprocessable_entity
+    if @movie.save
+      redirect_to @movie, notice: "Movie was successfully created."
+    else
+      flash.now[:alert] = "There were errors creating the movie."
+      render :new, status: :unprocessable_entity
+    end
   end
-end
 
   # GET /movies/:id/edit
   # HTTP Verb: GET
@@ -72,7 +72,7 @@ end
 
   def authorize_movie
   redirect_to movies_path, alert: "Not authorized" unless @movie.user == Current.user
-　end
+  end
 
   def movie_params
     params.require(:movie).permit(:title, :director, :release_year, :rating)
