@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "sessions#omniauth"
   get "/auth/failure", to: "sessions#failure"
 
-  resource :session
-  resources :passwords, param: :token
+  resources :param: :token
   resources :movies do
     resources :reviews, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end

@@ -1,10 +1,23 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:new, :create]
   before_action :correct_user, only: [:edit, :update, :destroy]
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      login(@user)
+      redirect_to @user, notice: "Account created successfully."
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
   def show
     @user = User.find(params[:id])
-    # You can display associated models (ex: @user.tasks) in the show view.
   end
 
   def edit
@@ -14,9 +27,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    # Require password challenge for update
     if @user.authenticate(params[:user][:password_challenge])
-      # Update attributes (email, password etc.)
       if @user.update(user_params)
         redirect_to @user, notice: "Profile was successfully updated."
       else
@@ -42,7 +53,11 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    # Permit password_challenge for verification, but don't save it to DB
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(
+      :email,
+      :password,
+      :password_confirmation,
+      :password_challenge
+    )
   end
 end

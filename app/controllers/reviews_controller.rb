@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
 
   # GET /movies/:movie_id/reviews/new
   def new
+    @movie = Movie.find(params[:movie_id])
     @review = @movie.reviews.build
   end
 
